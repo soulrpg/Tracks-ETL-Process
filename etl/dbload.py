@@ -8,6 +8,7 @@ cur = con.cursor()
 TRACKS_FILEPATH = "data/unique_tracks.txt"
 LISTENINGS_FILEPATH = "data/triplets_sample_20p.txt"
 
+
 def create_tables():
     """Create tracks and listenings tables"""
     cur.execute("CREATE TABLE IF NOT EXISTS tracks (id TEXT PRIMARY KEY, "
@@ -18,11 +19,13 @@ def create_tables():
                 "listen_date INTEGER NOT NULL);")
     print("Tables created.")
 
+
 def clean_tables():
     """Remove all records from tables"""
     cur.execute("DELETE FROM tracks;")
     cur.execute("DELETE FROM listenings;")
     print("Tables cleaned.")
+
 
 def load_data():
     """Load data from txt files"""
@@ -32,7 +35,8 @@ def load_data():
                 data = line.split("<SEP>")
                 cur.execute("INSERT INTO tracks VALUES(?, ?, ?, ?);", \
                     (data[0], data[1], data[2], data[3]))
-        with open(LISTENINGS_FILEPATH, mode="r", encoding="ISO-8859-1")  as listenings:
+        with open(LISTENINGS_FILEPATH, mode="r", encoding="ISO-8859-1") \
+            as listenings:
             for line in listenings:
                 data = line.split("<SEP>")
                 cur.execute("INSERT INTO listenings VALUES(?, ?, ?);", \
