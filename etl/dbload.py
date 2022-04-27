@@ -41,6 +41,8 @@ def load_data():
                 data = line.split("<SEP>")
                 cur.execute("INSERT INTO listenings VALUES(?, ?, ?);", \
                     (data[0], data[1], data[2]))
+        con.commit()
     except FileNotFoundError:
         print("Data loading failed. Place input files into data/ directory.")
     print("Data loaded.")
+    con.close()
