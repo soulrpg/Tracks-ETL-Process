@@ -15,7 +15,7 @@ def main():
     print("Top tracks:")
     top_tracks = analysis.top_tracks()
     for i, track in enumerate(top_tracks):
-        print(i + 1, track)
+        print(i + 1, track[0])
     end_time = time.time()
     print("Time elapsed:", end_time - start_time)
 
